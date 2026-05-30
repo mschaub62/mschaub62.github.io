@@ -6,4 +6,4 @@ Welcome to my CS-499 Capstone ePortfolio. This site will showcase my enhanced ar
 
 My code review video can be viewed here:
 
-[Watch Code Review Video](paste-your-youtube-link-here)
+[Watch Code Review Video]. (https://youtu.be/nYkvmZvs2do)
