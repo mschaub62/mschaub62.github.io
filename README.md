@@ -6,9 +6,17 @@ Welcome to my CS-499 Capstone ePortfolio. This site showcases my enhanced artifa
 
 ## Code Review
 
-As part of my ePortfolio, I completed a code review that explains the original artifacts, identifies areas for improvement, and describes the enhancements I planned for the final project.
+As part of my CS-499 ePortfolio, I completed a code review explaining the strengths, weaknesses, and planned enhancements for my selected software artifacts.
 
-[View My Code Review Video](https://youtu.be/nYkvmZvs2do)
+<iframe width="100%" height="500"
+src="https://www.youtube.com/embed/nYkvmZvs2do"
+title="CS 499 Capstone Code Review"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen>
+</iframe>
+
+[Open Code Review Video on YouTube](https://youtu.be/nYkvmZvs2do)
 
 ---
 
