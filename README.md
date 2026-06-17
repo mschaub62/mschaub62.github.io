@@ -1,8 +1,8 @@
 
 
-## Computer Science Capstone Portfolio
+## Welcome
 
-Welcome to my CS-499 ePortfolio. This portfolio showcases my growth throughout the Computer Science program through enhanced artifacts in software design and engineering, algorithms and data structures, and databases.
+This CS-499 ePortfolio showcases my growth throughout the Computer Science program through enhanced artifacts in software design and engineering, algorithms and data structures, and databases. Each artifact demonstrates the skills I developed in software development, secure coding, database design, problem solving, and professional communication.
 
 ---
 
