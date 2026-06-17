@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weight Tracking Application</string>
+
+    <string name="sms_settings_title">SMS Settings</string>
+    <string name="sms_settings_description">Enable SMS alerts to receive a text message when you reach your goal weight.</string>
+    <string name="enable_sms_alerts">Enable SMS alerts</string>
+    <string name="sms_permission_status_default">SMS permission has not been checked yet.</string>
+    <string name="phone_number_label">Phone Number</string>
+    <string name="phone_number_hint">Enter phone number</string>
+    <string name="request_sms_permission">Grant SMS Permission</string>
+    <string name="save_sms_settings">Save SMS Settings</string>
+    <string name="send_test_message">Send Test Message</string>
+    <string name="sms_result_default">No SMS action has been performed yet.</string>
+
+    <string name="add_edit_weight_title">Add / Edit Weight</string>
+    <string name="create_weight_entry">Create a New Weight Entry</string>
+    <string name="update_weight_entry">Update an Existing Weight Entry</string>
+    <string name="weight_label">Weight</string>
+    <string name="weight_hint">Enter weight in pounds</string>
+    <string name="weight_input_description">Weight input field in pounds</string>
+    <string name="save_entry">Save Entry</string>
+    <string name="unable_to_load_entry">Unable to load the selected entry.</string>
+    <string name="please_enter_weight">Please enter a weight.</string>
+    <string name="enter_valid_numeric_weight">Enter a valid numeric weight.</string>
+    <string name="weight_entry_saved">Weight entry saved.</string>
+    <string name="weight_entry_updated">Weight entry updated.</string>
+    <string name="unable_to_save_weight_entry">Unable to save the weight entry.</string>
+    <string name="goal_reached_sms_sent">Goal reached SMS sent.</string>
+    <string name="sms_not_sent">SMS could not be sent on this device/emulator.</string>
+    <string name="update_an_existing_weight_entry">Update an Existing Weight Entry</string>
+</resources>
