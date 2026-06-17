@@ -1,7 +1,0 @@
-dash
-pandas
-plotly
-dash-leaflet
-pymongo
-jupyter-dash
-python-dotenv
