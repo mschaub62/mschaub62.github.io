@@ -6,14 +6,6 @@ Welcome to my CS-499 ePortfolio. This portfolio showcases my growth throughout t
 
 ---
 
-## Portfolio Navigation
-
-- [Professional Self-Assessment](./Narratives/professional-self-assessment.md)
-- [Code Review Summary](./Narratives/code-review-summary.md)
-- [Software Design and Engineering](./Narratives/software-design-and-engineering.md)
-- [Algorithms and Data Structures](./Narratives/algorithms-and-data-structures.md)
-- [Databases](./Narratives/databases.md)
-
 ## Professional Self-Assesment
 
 I began my journey toward my Bachelor of Science in Computer Science in 2023 with the goal of expanding my technical background and becoming a stronger technology professional. Before entering this program, I had already built a foundation through my degree in Automated Systems and Robotics Engineering and through my professional experience in automation and controls. That background gave me hands-on experience with industrial systems, problem solving, programming logic, and technical troubleshooting. The Computer Science program helped me build on that foundation by giving me a deeper understanding of software development, databases, algorithms, security, and full stack application design.
