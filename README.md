@@ -24,9 +24,9 @@ These skills have helped me become more confident in designing and improving sof
 
 ## Code Review
 
-This code review explains the current state of my selected artifacts and identifies opportunities for improvement in structure, logic, efficiency, functionality, security, testing, commenting, and documentation.
+The code review was the starting point for my CS 499 capstone enhancements. During the review, I looked at my selected artifacts from the viewpoint of a developer improving existing software rather than only checking if the projects met the original course requirements. I reviewed my Android weight-tracking app, OpenGL 3D scene, and CS 340 Grazioso Salvare dashboard to identify areas that could be improved in security, structure, maintainability, efficiency, documentation, and user experience. This helped me create a clear enhancement plan for each category: software design and engineering, algorithms and data structures, and databases.
 
-The review also outlines the enhancements I planned for my CS-499 ePortfolio project.
+Overall, the code review helped me recognize that a program can work correctly but still need improvements before it is ready to be presented as a professional artifact. Across the three projects, I identified issues such as weak password handling, hardcoded database credentials, limited validation, resource management concerns, and areas where the code could be easier to maintain. The review gave me a stronger professional mindset and helped guide targeted improvements that demonstrate my growth in secure coding, defensive programming, database design, and software development practices.
 
 <iframe width="100%" height="500"
 src="https://www.youtube.com/embed/nYkvmZvs2do"
