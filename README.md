@@ -1,6 +1,24 @@
 # Matthew Schaub CS-499 ePortfolio
 
-Welcome to my CS-499 Capstone ePortfolio. This site showcases my enhanced artifacts in software engineering and design, algorithms and data structures, and databases.
+Introduction
+
+Completing the Computer Science program and building this ePortfolio has helped me look at my work from a more professional point of view. When I first started many of these projects, my main goal was to get the program working and meet the requirements of the class. Through the capstone, I learned to go back through my earlier work and evaluate it like a developer reviewing a real application. This helped me focus on areas such as security, code organization, database design, validation, documentation, and maintainability.
+
+My background and career goals are focused on automation, controls engineering, digital solutions, and cybersecurity. Because of that, I wanted my ePortfolio to show more than just school projects. I wanted it to show skills that connect to real-world systems, such as applications that store data, dashboards that support decision-making, and software that is built with safety and maintainability in mind.
+
+Throughout the program, I gained experience with several languages, tools, and technologies, including:
+
+Java
+Python
+C++
+MongoDB
+SQLite
+OpenGL
+Dash
+PyMongo
+Full stack web development
+
+These skills have helped me become more confident in designing and improving software solutions that solve practical problems.
 
 ---
 
