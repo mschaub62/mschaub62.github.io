@@ -1,24 +1,12 @@
 # Matthew Schaub CS-499 ePortfolio
 
-## Introduction
+## Professional Self-Assesment
 
-Completing the Computer Science program and building this ePortfolio has helped me look at my work from a more professional point of view. When I first started many of these projects, my main goal was to get the program working and meet the requirements of the class. Through the capstone, I learned to go back through my earlier work and evaluate it like a developer reviewing a real application. This helped me focus on areas such as security, code organization, database design, validation, documentation, and maintainability.
+I began my journey toward my Bachelor of Science in Computer Science in 2023 with the goal of expanding my technical background and becoming a stronger technology professional. Before entering this program, I had already built a foundation through my degree in Automated Systems and Robotics Engineering and through my professional experience in automation and controls. That background gave me hands-on experience with industrial systems, problem solving, programming logic, and technical troubleshooting. The Computer Science program helped me build on that foundation by giving me a deeper understanding of software development, databases, algorithms, security, and full stack application design.
 
-My background and career goals are focused on automation, controls engineering, digital solutions, and cybersecurity. Because of that, I wanted my ePortfolio to show more than just school projects. I wanted it to show skills that connect to real-world systems, such as applications that store data, dashboards that support decision-making, and software that is built with safety and maintainability in mind.
+Completing this ePortfolio has allowed me to reflect on how much I have grown throughout the program. When I first created many of these projects, my main goal was to meet the course requirements and make the applications work correctly. Through the capstone, I learned to review my earlier work from a more professional point of view. I focused on improving security, maintainability, validation, database design, documentation, and overall code quality. This process helped me understand that a working program is not always a finished program. A professional application should also be secure, organized, reliable, and understandable to others.
 
-Throughout the program, I gained experience with several languages, tools, and technologies, including:
-
-Java
-Python
-C++
-MongoDB
-SQLite
-OpenGL
-Dash
-PyMongo
-Full stack web development
-
-These skills have helped me become more confident in designing and improving software solutions that solve practical problems.
+My career goals are focused on automation, digital solutions, controls engineering, and cybersecurity. These areas connect closely with computer science because modern industrial systems depend on software, databases, networks, dashboards, and secure design. The work in this portfolio demonstrates my ability to create and improve software solutions that support real-world goals. It also shows how my background in automation and robotics works together with my computer science education to prepare me for roles that require both technical depth and practical problem-solving skills.
 
 ---
 
