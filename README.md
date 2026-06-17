@@ -23,14 +23,14 @@ The code review was the starting point for my CS 499 capstone enhancements. Duri
 Overall, the code review helped me recognize that a program can work correctly but still need improvements before it is ready to be presented as a professional artifact. Across the three projects, I identified issues such as weak password handling, hardcoded database credentials, limited validation, resource management concerns, and areas where the code could be easier to maintain. The review gave me a stronger professional mindset and helped guide targeted improvements that demonstrate my growth in secure coding, defensive programming, database design, and software development practices.
 
 <iframe width="100%" height="500"
-src="[https:](https://youtu.be/tvQTyRxiNhY)"
+src="https://www.youtube.com/embed/tvQTyRxiNhY"
 title="Matthew Schaub CS-499 Capstone Code Review"
 frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 allowfullscreen>
 </iframe>
 
-[Watch on YouTube](https://youtu.be/tvQTyRxiNhY)
+[Watch on YouTube](https://www.youtube.com/watch?v=tvQTyRxiNhY)
 ---
 
 ## Enhanced Artifacts
