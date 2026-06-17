@@ -1,2 +1,7 @@
 title: "Matthew Schaub CS-499 ePortfolio"
 description: "Computer Science Capstone Portfolio"
+theme: jekyll-theme-cayman
+show_downloads: false
+github:
+repository_url: "https://github.com/mschaub62/mschaub62.github.io"
+
