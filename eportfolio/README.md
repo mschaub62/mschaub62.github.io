@@ -5,7 +5,7 @@ professional self-assessment, an informal code review, and three enhanced artifa
 spanning **software design & engineering**, **algorithms & data structures**, and
 **databases**.
 
-**Live site:** once deployed, `https://<your-username>.github.io/<repo-name>/`
+**Live site:** once deployed, `https://github.com/mschaub62/mschaub62.github.io`
 
 ---
 
