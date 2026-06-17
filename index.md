@@ -3,12 +3,6 @@
 ## Portfolio Overview
 
 This CS-499 ePortfolio showcases my growth throughout the Computer Science program through enhanced artifacts in software design and engineering, algorithms and data structures, and databases. Each artifact demonstrates the skills I developed in software development, secure coding, database design, problem solving, and professional communication.
----
-<p align="center">
-  <a class="btn" href="https://github.com/mschaub62/mschaub62.github.io" target="_blank">
-    View Project on GitHub
-  </a>
-</p>
 
 ---
 
