@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvDashboardTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Weight History"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvGoalSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Goal Weight: No goal saved yet"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnAddWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"
+            android:text="Add Weight Entry" />
+
+        <Button
+            android:id="@+id/btnGoalSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:minHeight="48dp"
+            android:text="Goal Weight Settings" />
+
+        <Button
+            android:id="@+id/btnSmsSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:minHeight="48dp"
+            android:text="SMS Notifications" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:minHeight="48dp"
+            android:text="Logout" />
+
+        <TextView
+            android:id="@+id/tvGridHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Recorded Weights"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="No weights recorded yet. Tap Add Weight Entry to begin."
+            android:visibility="gone" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TableLayout
+                android:id="@+id/tableWeights"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1">
+
+                <TableRow
+                    android:background="#DDDDDD"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:padding="8dp"
+                        android:text="Date"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:padding="8dp"
+                        android:text="Weight"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:padding="8dp"
+                        android:text="Edit"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:padding="8dp"
+                        android:text="Delete"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</ScrollView>
