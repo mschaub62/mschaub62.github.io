@@ -1,6 +1,6 @@
 # Matthew Schaub CS-499 ePortfolio
 
-Introduction
+##Introduction
 
 Completing the Computer Science program and building this ePortfolio has helped me look at my work from a more professional point of view. When I first started many of these projects, my main goal was to get the program working and meet the requirements of the class. Through the capstone, I learned to go back through my earlier work and evaluate it like a developer reviewing a real application. This helped me focus on areas such as security, code organization, database design, validation, documentation, and maintainability.
 
