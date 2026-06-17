@@ -1,3 +1,6 @@
+---
+layout: default
+---
 
 ## Professional Self-Assesment
 
