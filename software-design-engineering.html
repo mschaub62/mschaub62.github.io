@@ -113,6 +113,28 @@
           and comparing.
         </div>
 
+        <div class="diff">
+          <div class="codepanel codepanel--before">
+            <div class="codepanel__head">BEFORE &middot; Databasehelper.java</div>
+<pre><code><span class="tok-c">// stored and compared as plain text</span>
+values.<span class="tok-f">put</span>(<span class="tok-s">"password"</span>, <span class="tok-r">password</span>);
+...
+db.<span class="tok-f">rawQuery</span>(
+  <span class="tok-s">"SELECT id FROM users WHERE "</span> +
+  <span class="tok-s">"username = ? AND password = ?"</span>,
+  <span class="tok-k">new</span> String[]{username, <span class="tok-r">password</span>});</code></pre>
+          </div>
+          <div class="codepanel codepanel--after">
+            <div class="codepanel__head">AFTER &middot; salted hash stored</div>
+<pre><code><span class="tok-c">// only salt + derived hash are stored</span>
+PasswordRecord rec =
+  PasswordUtils.<span class="tok-f">hashPassword</span>(password);
+values.<span class="tok-f">put</span>(<span class="tok-s">"password_hash"</span>, rec.<span class="tok-f">getHash</span>());
+values.<span class="tok-f">put</span>(<span class="tok-s">"password_salt"</span>, rec.<span class="tok-f">getSalt</span>());
+<span class="tok-c">// verify by re-deriving, never by ==</span></code></pre>
+          </div>
+        </div>
+
         <div class="codewell ticked">
           <div class="codepanel__head" style="color:var(--verify)">
             <span class="lamp"></span> ENHANCED &middot; PasswordUtils.java
@@ -197,8 +219,7 @@
           <a class="btn btn--ghost" href="code/software-design-engineering/original/">View original code</a>
         </div>
         <p class="muted" style="font-size:.85rem;margin-top:14px">
-          Links point to the code folders in this repository. See the project README for
-          where to place the original and enhanced source.</p>
+          The original and enhanced source for this artifact live in this repository.</p>
       </div>
     </div>
   </div>
