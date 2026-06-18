@@ -1,0 +1,20 @@
+# Never commit secrets
+.env
+*.env
+!*.env.example
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+
+# Build output
+build/
+Debug/
+x64/
+.gradle/
