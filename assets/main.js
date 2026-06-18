@@ -52,7 +52,7 @@
     }, 2600);
   }
 
-  // --- active section highlighting (in-page anchors on home) ---
+  // --- active section highlighting  ---
   var sectionLinks = Array.prototype.slice.call(
     document.querySelectorAll('.nav a[href^="#"]')
   );
