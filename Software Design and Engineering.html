@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SDE&middot;01 — Weight Tracking App | Matthew Schaub</title>
+<meta name="description" content="Software Design & Engineering artifact: an Android weight-tracking app enhanced with salted PBKDF2 password hashing, centralized validation, and cleaner class structure." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="lamp lamp--live"></span>
+      <span><b>M. SCHAUB</b> <span class="sep">/</span> CS&nbsp;ePORTFOLIO</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="index.html#assessment">Self-Assessment</a>
+      <a href="index.html#review">Code Review</a>
+      <a href="index.html#artifacts">Artifacts</a>
+      <a href="software-design-engineering.html" aria-current="page">SDE&middot;01</a>
+      <a href="algorithms-data-structures.html">ALG&middot;02</a>
+      <a href="databases.html">DAT&middot;03</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- header -->
+<section class="artifact-head wrap">
+  <a class="backlink reveal" href="index.html#artifacts">← All artifacts</a>
+  <p class="eyebrow reveal">SDE&middot;01 &middot; Software Design &amp; Engineering</p>
+  <h1 class="reveal">Weight Tracking App</h1>
+  <p class="hero__role reveal">An Android weight-tracking application, re-engineered for
+    safer credential handling, centralized validation, and a cleaner separation of
+    responsibilities.</p>
+
+  <dl class="kv reveal">
+    <dt>Origin</dt><dd>Mobile Architecture &amp; Programming coursework (Android)</dd>
+    <dt>Language</dt><dd>Java</dd>
+    <dt>Platform</dt><dd>Android Studio &middot; SQLite</dd>
+    <dt>Focus</dt><dd>Secure coding, maintainability, input validation</dd>
+  </dl>
+  <div class="tags reveal" style="margin-top:18px">
+    <span class="chip">Java</span><span class="chip">Android SDK</span>
+    <span class="chip">SQLite</span><span class="chip">PBKDF2</span>
+    <span class="chip">SharedPreferences</span><span class="chip">Permissions</span>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- narrative -->
+<section class="section">
+  <div class="wrap">
+    <div class="split">
+      <aside class="rail reveal">
+        <p class="rail__label">Narrative</p>
+        <ol>
+          <li><a href="#describe">The artifact</a></li>
+          <li><a href="#justify">Why it's included</a></li>
+          <li><a href="#enhance">What changed</a></li>
+          <li><a href="#reflect">Reflection</a></li>
+          <li><a href="#outcomes">Course outcomes</a></li>
+        </ol>
+      </aside>
+
+      <div class="prose reveal">
+        <h3 id="describe">The artifact</h3>
+        <p>The software design and engineering artifact is a weight-tracking app
+          originally created in Android Studio using Java. The app lets a user create an
+          account, log in, add a weight, update and delete records, save a goal weight,
+          and optionally enable SMS notifications. It uses SQLite to store user records,
+          weight history, goal-weight information, and local settings.</p>
+
+        <h3 id="justify">Why it's included</h3>
+        <p>I selected this artifact because it is a working application with a clear
+          purpose, not just a small code sample. It includes screens, user interaction,
+          persistent storage, and logic that connects a user's goal to the app's
+          behavior. That makes it a good example of building software around a real user
+          need, and it lets me show mobile development, Java, database use, validation,
+          and secure-coding improvements in one place.</p>
+
+        <h3 id="enhance">What changed in the enhancement</h3>
+        <p>The most important change was safer password handling. The original version
+          handled passwords in a way that was not safe for a real application. The
+          enhanced version adds a <span class="tok-f">PasswordUtils</span> class that uses
+          salted PBKDF2 hashing, so the raw password is never stored in the database. User
+          account information should be treated as private, even in a class project.</p>
+        <p>I also added centralized validation through a <span class="tok-f">WeightValidator</span>
+          class. Instead of scattering input rules across the project, the rules for
+          usernames, passwords, phone numbers, and weight values now live in one place.
+          The app checks for reasonable weight ranges and stronger password requirements,
+          which improves data quality and makes the app less likely to accept bad input.</p>
+        <p>Finally, I improved the goal-weight logic and the safety of the app. The goal
+          feature now uses the logged-in user's ID when reading the saved goal, so the
+          goal stays tied to the correct user. I added a delete confirmation before a
+          weight entry is removed, because weight history is user-created data and
+          deleting it by accident would be frustrating. The SMS feature was made optional
+          and permission-based: if the user does not grant SMS permission, the app keeps
+          working for its main purpose of tracking weight.</p>
+
+        <div class="callout">
+          <strong>Before:</strong> passwords compared as stored text — exposed if the
+          database were ever read.<br />
+          <strong>After:</strong> a per-user random salt and 120,000 PBKDF2 iterations.
+          The app stores only the salt and the derived hash, and verifies by re-deriving
+          and comparing.
+        </div>
+
+        <div class="diff">
+          <div class="codepanel codepanel--before">
+            <div class="codepanel__head">BEFORE &middot; Databasehelper.java</div>
+<pre><code><span class="tok-c">// stored and compared as plain text</span>
+values.<span class="tok-f">put</span>(<span class="tok-s">"password"</span>, <span class="tok-r">password</span>);
+...
+db.<span class="tok-f">rawQuery</span>(
+  <span class="tok-s">"SELECT id FROM users WHERE "</span> +
+  <span class="tok-s">"username = ? AND password = ?"</span>,
+  <span class="tok-k">new</span> String[]{username, <span class="tok-r">password</span>});</code></pre>
+          </div>
+          <div class="codepanel codepanel--after">
+            <div class="codepanel__head">AFTER &middot; salted hash stored</div>
+<pre><code><span class="tok-c">// only salt + derived hash are stored</span>
+PasswordRecord rec =
+  PasswordUtils.<span class="tok-f">hashPassword</span>(password);
+values.<span class="tok-f">put</span>(<span class="tok-s">"password_hash"</span>, rec.<span class="tok-f">getHash</span>());
+values.<span class="tok-f">put</span>(<span class="tok-s">"password_salt"</span>, rec.<span class="tok-f">getSalt</span>());
+<span class="tok-c">// verify by re-deriving, never by ==</span></code></pre>
+          </div>
+        </div>
+
+        <div class="codewell ticked">
+          <div class="codepanel__head" style="color:var(--verify)">
+            <span class="lamp"></span> ENHANCED &middot; PasswordUtils.java
+          </div>
+<pre><code><span class="tok-k">private static final</span> String HASH_ALGORITHM = <span class="tok-s">"PBKDF2WithHmacSHA256"</span>;
+<span class="tok-k">private static final int</span> SALT_BYTES = <span class="tok-f">16</span>;
+<span class="tok-k">private static final int</span> HASH_BYTES = <span class="tok-f">32</span>;
+<span class="tok-k">private static final int</span> ITERATIONS = <span class="tok-f">120_000</span>;
+
+<span class="tok-k">public static</span> PasswordRecord <span class="tok-f">hashPassword</span>(String password) {
+    <span class="tok-k">byte</span>[] salt = <span class="tok-k">new byte</span>[SALT_BYTES];
+    <span class="tok-k">new</span> SecureRandom().<span class="tok-f">nextBytes</span>(salt);   <span class="tok-c">// unique salt per user</span>
+    <span class="tok-k">byte</span>[] hash = <span class="tok-f">deriveHash</span>(password, salt);
+    <span class="tok-k">return new</span> PasswordRecord(<span class="tok-f">toHex</span>(hash), <span class="tok-f">toHex</span>(salt));
+}
+
+<span class="tok-k">public static boolean</span> <span class="tok-f">verifyPassword</span>(String password, String storedHash, String storedSalt) {
+    <span class="tok-k">byte</span>[] actualHash = <span class="tok-f">deriveHash</span>(password, <span class="tok-f">fromHex</span>(storedSalt));
+    <span class="tok-k">return</span> Arrays.<span class="tok-f">equals</span>(<span class="tok-f">fromHex</span>(storedHash), actualHash);
+}</code></pre>
+        </div>
+
+        <h3 id="reflect">Reflection</h3>
+        <p>Reviewing a project I had already finished taught me that the original app had
+          its main features working, but a closer read revealed places where the design
+          could be stronger, especially around security. That is a good stepping stone,
+          because I am now looking at my work as a soon-to-be professional who has to
+          think about optimizing designs and writing more secure programs.</p>
+        <p>Part of the learning was reading the code from another developer's point of
+          view: how would someone else debug this? That is when it became clear that
+          separating responsibilities, by adding helper classes for password handling and
+          validation, would make the project cleaner and easier to understand.</p>
+        <p>Updating my original plan honestly: I did not complete the full Room and
+          ViewModel (MVVM) conversion for this milestone. Instead I focused on practical
+          changes that improved the app while keeping it stable, repository-style
+          organization, stronger validation, password hashing, safer delete behavior, and
+          corrected goal logic. A full Room and MVVM structure is still a good future
+          improvement, but the current work was a solid step forward.</p>
+
+        <h3 id="outcomes">Course outcomes addressed</h3>
+        <table class="matrix">
+          <caption>Outcome alignment — this artifact</caption>
+          <thead>
+            <tr><th>Outcome</th><th>Status</th><th>Evidence</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="oc">CO 1</td>
+              <td><span class="status status--part"><span class="lamp lamp--warn"></span>In progress</span></td>
+              <td>The app helps an individual track progress, but it is less suited to
+                collaborative decision-making than the database dashboard.</td>
+            </tr>
+            <tr>
+              <td class="oc">CO 2</td>
+              <td><span class="status status--met"><span class="lamp"></span>Met</span></td>
+              <td>The code review and narrative communicate the original project and the
+                planned enhancements to a technical audience.</td>
+            </tr>
+            <tr>
+              <td class="oc">CO 3</td>
+              <td><span class="status status--part"><span class="lamp lamp--warn"></span>In progress</span></td>
+              <td>The enhancements required design choices and trade-offs in structure and
+                validation.</td>
+            </tr>
+            <tr>
+              <td class="oc">CO 4</td>
+              <td><span class="status status--met"><span class="lamp"></span>Met</span></td>
+              <td>Used Android Studio, Java, SQLite, activities, SharedPreferences, and
+                permission handling to improve a working solution.</td>
+            </tr>
+            <tr>
+              <td class="oc">CO 5</td>
+              <td><span class="status status--met"><span class="lamp"></span>Met</span></td>
+              <td>Password hashing, centralized validation, and permission-based behavior
+                demonstrate a security mindset.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="linkrow">
+          <a class="btn" href="code/software-design-engineering/enhanced/">View enhanced code</a>
+          <a class="btn btn--ghost" href="code/software-design-engineering/original/">View original code</a>
+        </div>
+        <p class="muted" style="font-size:.85rem;margin-top:14px">
+          The original and enhanced source for this artifact live in this repository.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__meta">MATTHEW SCHAUB &middot; SDE&middot;01 &middot; SNHU CS&nbsp;499 &middot; &copy;&nbsp;<span data-year>2026</span></div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="algorithms-data-structures.html">ALG&middot;02 →</a>
+      <a href="databases.html">DAT&middot;03 →</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
