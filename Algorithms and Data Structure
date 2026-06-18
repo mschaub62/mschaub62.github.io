@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ALG&middot;02 — OpenGL 3D Scene | Matthew Schaub</title>
+<meta name="description" content="Algorithms & Data Structures artifact: a C++/OpenGL 3D scene hardened with corrected projection logic, texture-array boundary checks, and safe resource cleanup." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="lamp lamp--live"></span>
+      <span><b>M. SCHAUB</b> <span class="sep">/</span> CS&nbsp;ePORTFOLIO</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="index.html#assessment">Self-Assessment</a>
+      <a href="index.html#review">Code Review</a>
+      <a href="index.html#artifacts">Artifacts</a>
+      <a href="software-design-engineering.html">SDE&middot;01</a>
+      <a href="algorithms-data-structures.html" aria-current="page">ALG&middot;02</a>
+      <a href="databases.html">DAT&middot;03</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="artifact-head wrap">
+  <a class="backlink reveal" href="index.html#artifacts">← All artifacts</a>
+  <p class="eyebrow reveal">ALG&middot;02 &middot; Algorithms &amp; Data Structures</p>
+  <h1 class="reveal">OpenGL 3D Scene</h1>
+  <p class="hero__role reveal">A C++ and OpenGL renderer, corrected and hardened: accurate
+    projection logic, array boundary checks, and safe resource cleanup, without breaking
+    the existing scene.</p>
+
+  <dl class="kv reveal">
+    <dt>Origin</dt><dd>CS-330 Computational Graphics &amp; Visualization</dd>
+    <dt>Language</dt><dd>C++</dd>
+    <dt>Platform</dt><dd>OpenGL &middot; GLSL &middot; Visual Studio</dd>
+    <dt>Focus</dt><dd>Correct logic, resource management, defensive programming</dd>
+  </dl>
+  <div class="tags reveal" style="margin-top:18px">
+    <span class="chip">C++</span><span class="chip">OpenGL</span>
+    <span class="chip">GLSL Shaders</span><span class="chip">Textures</span>
+    <span class="chip">Camera / Projection</span><span class="chip">Fixed-size arrays</span>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="section">
+  <div class="wrap">
+    <div class="split">
+      <aside class="rail reveal">
+        <p class="rail__label">Narrative</p>
+        <ol>
+          <li><a href="#describe">The artifact</a></li>
+          <li><a href="#justify">Why it's included</a></li>
+          <li><a href="#enhance">What changed</a></li>
+          <li><a href="#reflect">Reflection</a></li>
+          <li><a href="#outcomes">Course outcomes</a></li>
+        </ol>
+      </aside>
+
+      <div class="prose reveal">
+        <h3 id="describe">The artifact</h3>
+        <p>The algorithms and data structure artifact is my OpenGL 3D scene project from
+          CS-330, built in C++ and OpenGL. The program renders a 3D scene using shapes,
+          textures, lighting, camera controls, and projection settings. Behind the visuals
+          it uses arrays, structured logic, object rendering, and OpenGL resource
+          management.</p>
+
+        <h3 id="justify">Why it's included</h3>
+        <p>I selected this artifact because it shows more than a picture on screen. It
+          shows how code organizes textures, manages objects, and controls how a scene is
+          displayed. That makes it a strong algorithms-and-data-structures example: the
+          program stores texture information in a fixed array, uses logic to control
+          rendering behavior, and requires careful handling of resources.</p>
+
+        <h3 id="enhance">What changed in the enhancement</h3>
+        <p><strong>Corrected the projection logic.</strong> In the original, the function
+          that reports whether orthographic projection is active always returned
+          <span class="tok-r">false</span> instead of the real state. I corrected it to
+          return the stored projection value, so the rest of the renderer makes decisions
+          on accurate information.</p>
+
+        <div class="diff">
+          <div class="codepanel codepanel--before">
+            <div class="codepanel__head">BEFORE &middot; always false</div>
+<pre><code><span class="tok-k">bool</span> ViewManager::<span class="tok-f">IsOrthographic</span>...() <span class="tok-k">const</span>
+{
+    <span class="tok-c">// ignores the real state</span>
+    <span class="tok-k">return</span> <span class="tok-r">false</span>;
+}</code></pre>
+          </div>
+          <div class="codepanel codepanel--after">
+            <div class="codepanel__head">AFTER &middot; returns real state</div>
+<pre><code><span class="tok-k">bool</span> ViewManager::<span class="tok-f">IsOrthographic</span>...() <span class="tok-k">const</span>
+{
+    <span class="tok-k">return</span> bOrthographicProjection;
+}</code></pre>
+          </div>
+        </div>
+
+        <p><strong>Fixed the texture cleanup.</strong> The original cleanup routine called
+          <span class="tok-r">glGenTextures</span>, which <em>creates</em> textures instead
+          of releasing them. I changed it to <span class="tok-f">glDeleteTextures</span>,
+          reset the texture IDs, cleared the texture tags, and reset the loaded-texture
+          count, so GPU resources are actually freed.</p>
+
+        <div class="diff">
+          <div class="codepanel codepanel--before">
+            <div class="codepanel__head">BEFORE &middot; leaks resources</div>
+<pre><code><span class="tok-k">for</span> (<span class="tok-k">int</span> i = 0; i &lt; m_loadedTextures; i++)
+{
+    <span class="tok-r">glGenTextures</span>(1, &amp;m_textureIDs[i].ID);
+}
+<span class="tok-c">// nothing is released; count never reset</span></code></pre>
+          </div>
+          <div class="codepanel codepanel--after">
+            <div class="codepanel__head">AFTER &middot; releases &amp; resets</div>
+<pre><code><span class="tok-k">for</span> (<span class="tok-k">int</span> i = 0; i &lt; m_loadedTextures; i++)
+{
+    <span class="tok-f">glDeleteTextures</span>(1, &amp;m_textureIDs[i].ID);
+    m_textureIDs[i].ID = 0;
+    m_textureIDs[i].tag = <span class="tok-s">""</span>;
+}
+m_loadedTextures = 0;</code></pre>
+          </div>
+        </div>
+
+        <p><strong>Added boundary checking.</strong> Because the program uses a fixed
+          texture array, I added a check that prevents loading more textures than the
+          array can safely hold, and I improved error handling for unsupported image
+          formats so image memory is released before the function exits. These changes made
+          the program safer and more reliable.</p>
+
+        <h3 id="reflect">Reflection</h3>
+        <p>This process taught me that a program can work visually and still have problems
+          in the code behind it. When I first created the project, my goal was simply to
+          get the scene to render. Reviewing it now let me look at the project the way a
+          developer reviews legacy code, checking logic, managing resources correctly,
+          validating boundaries, and writing code another developer could follow.</p>
+        <p>The biggest challenge was improving the artifact without breaking the existing
+          3D scene. OpenGL projects have many connected parts, shaders, meshes, textures,
+          lighting, and camera controls, so I made targeted corrections rather than
+          restructuring the whole renderer. Moving repeated rendering logic into reusable
+          helper methods is a sensible next step, but these changes were a solid step
+          forward and made the artifact stronger across algorithms, software design, and
+          defensive programming.</p>
+
+        <h3 id="outcomes">Course outcomes addressed</h3>
+        <table class="matrix">
+          <caption>Outcome alignment — this artifact</caption>
+          <thead>
+            <tr><th>Outcome</th><th>Status</th><th>Evidence</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="oc">CO 1</td>
+              <td><span class="status status--n"><span class="lamp" style="background:var(--faint)"></span>Not targeted</span></td>
+              <td>Collaborative decision-making is carried primarily by the database artifact.</td>
+            </tr>
+            <tr>
+              <td class="oc">CO 2</td>
+              <td><span class="status status--n"><span class="lamp" style="background:var(--faint)"></span>Not targeted</span></td>
+              <td>Audience communication is carried primarily by the code review and narratives.</td>
+            </tr>
+            <tr>
+              <td class="oc">CO 3</td>
+              <td><span class="status status--met"><span class="lamp"></span>Strongest</span></td>
+              <td>Arrays, logic, and structured rendering decisions are used to solve a
+                graphics problem, with trade-offs handled to avoid breaking the scene.</td>
+            </tr>
+            <tr>
+              <td class="oc">CO 4</td>
+              <td><span class="status status--met"><span class="lamp"></span>Met</span></td>
+              <td>Used C++, OpenGL, Visual Studio, shaders, and textures to improve a working application.</td>
+            </tr>
+            <tr>
+              <td class="oc">CO 5</td>
+              <td><span class="status status--met"><span class="lamp"></span>Met</span></td>
+              <td>Defensive programming: boundary checking, safer cleanup, and better handling of invalid texture data.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="linkrow">
+          <a class="btn" href="code/algorithms-data-structures/enhanced/">View enhanced code</a>
+          <a class="btn btn--ghost" href="code/algorithms-data-structures/original/">View original code</a>
+        </div>
+        <p class="muted" style="font-size:.85rem;margin-top:14px">
+          The original and enhanced source for this artifact live in this repository.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__meta">MATTHEW SCHAUB &middot; ALG&middot;02 &middot; SNHU CS&nbsp;499 &middot; &copy;&nbsp;<span data-year>2026</span></div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="software-design-engineering.html">← SDE&middot;01</a>
+      <a href="index.html">Home</a>
+      <a href="databases.html">DAT&middot;03 →</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
